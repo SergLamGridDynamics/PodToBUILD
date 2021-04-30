@@ -262,7 +262,7 @@ def gen_module_map(name,
 
 
 def _gen_includes_impl(ctx):
-    includes = []
+    CcInfo = []
     includes.extend(ctx.attr.include)
 
     for target in ctx.attr.include_files:
@@ -284,18 +284,18 @@ def _gen_includes_impl(ctx):
 _gen_includes = rule(
     implementation=_gen_includes_impl,
     attrs = {
-        "include": attr.string_list(mandatory=True),
+        "CcInfo": attr.string_list(mandatory=True),
         "include_files": attr.label_list(mandatory=True),
     }
 )
 
 def gen_includes(name,
-                 include=[],
+                 CcInfo=[],
                  include_files=[],
                  tags=["xchammer"],
                  visibility=["//visibility:public"]):
     _gen_includes(name=name,
-                  include=include,
+                  CcInfo=include,
                   include_files=include_files,
                   tags=tags,
                   visibility=visibility)
