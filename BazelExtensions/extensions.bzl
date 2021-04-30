@@ -275,7 +275,10 @@ def _gen_includes_impl(ctx):
     return [
         CcInfo(compilation_context=compilation_context),
         # objc_library deps requires an ObjcProvider
-        apple_common.new_objc_provider()
+        # line 264, column 42, in _gen_includes_impl
+		# return apple_common.new_objc_provider(
+        # Error in new_objc_provider: Key 'include' no longer supported in ObjcProvider (use CcInfo instead).
+        # apple_common.new_objc_provider()
     ]
 
 _gen_includes = rule(
