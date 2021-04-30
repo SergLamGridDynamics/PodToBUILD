@@ -262,23 +262,13 @@ def gen_module_map(name,
 
 
 def _gen_includes_impl(ctx):
-    CcInfo = []
-    includes.extend(ctx.attr.CcInfo)
-
-    for target in ctx.attr.include_files:
-        for f in target.files.to_list():
-            includes.append(f.path)
-
-    compilation_context = cc_common.create_compilation_context(
-            includes=depset(includes))
-
+    
     return [
-        CcInfo(compilation_context=compilation_context),
+        CcInfo(compilation_context=None),
         # objc_library deps requires an ObjcProvider
         # line 264, column 42, in _gen_includes_impl
-		# return apple_common.new_objc_provider(
-        # Error in new_objc_provider: Key 'include' no longer supported in ObjcProvider (use CcInfo instead).
-        # apple_common.new_objc_provider()
+		return apple_common.new_objc_provider()
+        
     ]
 
 _gen_includes = rule(
