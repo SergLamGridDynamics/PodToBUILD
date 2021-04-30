@@ -264,7 +264,7 @@ def gen_module_map(name,
 def _gen_includes_impl(ctx):
     
     includes = []
-    includes.extend(ctx.attr.include)
+    includes.extend(ctx.attr.CcInfo)
 
     for target in ctx.attr.include_files:
         for f in target.files.to_list():
